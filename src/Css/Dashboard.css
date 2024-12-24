@@ -1,0 +1,135 @@
+/* src/Css/Dashboard.css */
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: #81c784;
+}
+
+.container {
+    padding: 50px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-grow: 1;
+}
+.h1 {
+    font-size: 36px;
+    font-weight: 700;
+    color: white;
+    background: linear-gradient(45deg, #6a9c8e, #ff9e9e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin-bottom: 20px;
+    position: absolute; /* Menetapkan posisi absolut */
+    top: 38px; /* Mengurangi jarak dari atas */
+    left: 50%; /* Menempatkan elemen di tengah secara horizontal */
+    transform: translateX(-50%); /* Menyesuaikan posisi agar tepat di tengah */
+}
+
+
+.h2 {
+    font-size: 22px;
+    font-weight: normal;
+    color: white;
+    background: linear-gradient(45deg, #6a9c8e, #ff9e9e);
+    -webkit-background-clip: text;
+    background-clip: text;
+    top: 30px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    top: 50px;
+}
+
+.product-card {
+    width: 200px;
+    background-color: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 30px;
+    text-align: center;
+}
+
+.product-image {
+    width: 90%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-name {
+    font-size: 1.2em;
+    color: #3b6f4f;
+    font-weight: bold;
+    margin: 15px 0;
+}
+
+.product-price, .product-weight {
+    font-size: 1em;
+    color: #555;
+}
+
+.product-price {
+    font-weight: bold;
+    color: #4CAF50;
+}
+
+.product-weight {
+    color: #888;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.button {
+    padding: 8px 20px;
+    font-size: 0.9em;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.edit-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.delete-button {
+    background-color: #f44336;
+    color: white;
+}
+
+.buy-now-button {
+    background-color: #81c784;
+    color: white;
+    font-weight: bold;
+}
+
+.add-product-button {
+    padding: 10px 20px;
+    background-color: #81c784;
+    color: white;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    cursor: pointer;
+}

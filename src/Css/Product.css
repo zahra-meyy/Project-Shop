@@ -1,0 +1,148 @@
+/* Container utama untuk produk */
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color:  #81c784;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Membuat daftar produk dalam layout menyamping */
+.product1 {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    justify-content: center;
+    top: 50px;
+}
+
+/* Tampilan card untuk setiap produk */
+.product-card {
+    background-color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    flex: 0 1 22%; /* Card mengambil 22% lebar kontainer */
+    transition: transform 0.3s ease;
+    margin-bottom: 20px;  /* Jarak antar baris produk */
+    max-width: 200px; /* Membatasi lebar card */
+    height: auto;
+}
+
+.product-card:hover {
+    transform: scale(1.03);
+}
+
+.product-image {
+    width: 90%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 10px;
+}
+
+.product-price,
+.product-weight {
+    font-size: 0.9rem;
+    color: #555;
+    margin-left: 10px;
+}
+
+/* Tombol dan actions */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.update-button {
+    background-color: #ffc107;
+    color: white;
+}
+
+.update-button:hover {
+    background-color: #e0a800;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.delete-button:hover {
+    background-color: #c82333;
+}
+
+/* Tombol untuk menambah produk (dapat tampil hanya jika user login) */
+.add-product-button {
+    padding: 10px 16px;
+    background-color: #007bff;
+    color: white;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 20px;
+}
+
+.add-product-button:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive design untuk perangkat mobile */
+@media (max-width: 768px) {
+    .product1 {
+        flex-direction: column;  /* Card akan ditata vertikal pada layar lebih kecil */
+    }
+
+    .product-card {
+        flex: 0 1 100%;  /* Setiap card akan mengambil 100% lebar kontainer pada perangkat kecil */
+        max-width: 100%;  /* Menghilangkan batasan lebar */
+    }
+
+    .add-product-button {
+        width: 100%;  /* Tombol tambah produk mengambil seluruh lebar pada perangkat kecil */
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .product-name {
+        font-size: 1rem;
+    }
+
+    .button-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button {
+        margin: 5px 0;
+    }
+
+    .product-image {
+        height: 120px; /* Menyesuaikan ukuran gambar pada perangkat kecil */
+    }
+}

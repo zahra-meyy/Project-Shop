@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Dashboard from './Component/Dashboard';
+import Login from './Component/Login';
+import Product from './Component/Product';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+    return (
+        <Router>
+            <Routes>
+                {/* Rute untuk Dashboard */}
+                <Route
+                    path="/"
+                    element={<Dashboard isLoggedIn={isLoggedIn} onLoginToggle={setIsLoggedIn} />}
+                />
+                
+                {/* Rute untuk Login */}
+                <Route
+                    path="/login"
+                    element={<Login onLogin={(status) => setIsLoggedIn(status)} />}
+                />
+                
+                {/* Rute untuk Product */}
+                <Route
+                    path="/product"
+                    element={<Product isLoggedIn={isLoggedIn} onLoginToggle={setIsLoggedIn} />}
+                />
+            </Routes>
+        </Router>
+    );
 }
 
 export default App;
