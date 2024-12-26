@@ -1,47 +1,68 @@
-.login-page {
+/* Login.css */
+
+/* Kontainer login */
+.login-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    min-height: 100vh;
-    background-color: #3b6f4f; /* Warna latar belakang */
+    justify-content: flex-start; /* Memastikan konten dimulai dari atas */
+    height: 100vh;
+    background:  #81c784;
+    padding-top: 60px; /* Memberikan ruang untuk navbar */
 }
 
-.login-card {
-    background-color: white;
-    padding: 30px;
+/* Styling untuk form login */
+.login-form {
+    width: 300px;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #A8D5BA; /* Warna hijau soft */
+    color: white;
+    top: 50px;
+    margin-top: 30px;
+}
+
+/* Judul form */
+.login-title {
     text-align: center;
-}
-
-.login-card h1 {
-    font-size: 24px;
     margin-bottom: 20px;
-    color: #3b6f4f;
 }
 
-.login-card input {
+/* Grup input */
+.input-group {
+    margin-bottom: 15px;
+}
+
+.input-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.input-field {
     width: 100%;
     padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #ccc;
+    box-sizing: border-box;
     border-radius: 5px;
-    font-size: 16px;
+    border: 1px solid #555;
+    background-color: #f3f3f3; /* Warna latar input */
+    color: #333;
 }
 
-.login-card button {
+/* Tombol login */
+.login-button {
     width: 100%;
-    padding: 12px;
-    background-color: #4CAF50;
+    padding: 10px;
+    background-color: #81c784;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
     cursor: pointer;
 }
 
-.login-card button:hover {
-    background-color: #45a049;
+.login-button:hover {
+    background-color: #81c784;
 }
+
+/* Styling Navbar */

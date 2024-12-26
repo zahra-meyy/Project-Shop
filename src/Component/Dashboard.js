@@ -40,19 +40,7 @@ function Dashboard({ isLoggedIn, onLoginToggle }) {
         };
         setProducts([...products, newProduct]);
     };
-
-    const handleEditProduct = (id) => {
-        const editedProducts = products.map((product) =>
-            product.id === id ? { ...product, name: 'Produk Diedit' } : product
-        );
-        setProducts(editedProducts);
-    };
-
-    const handleDeleteProduct = (id) => {
-        const filteredProducts = products.filter((product) => product.id !== id);
-        setProducts(filteredProducts);
-    };
-
+    
     const handleBuyNow = (product) => {
         // Gunakan SweetAlert2 untuk menampilkan pesan
         Swal.fire({
@@ -72,7 +60,7 @@ function Dashboard({ isLoggedIn, onLoginToggle }) {
         <div className="dashboard">
             <Navbar isLoggedIn={isLoggedIn} onLoginToggle={onLoginToggle} />
             <div className="container">
-                <h1 className="h1">Welcome to the fresh vegetable shop</h1>
+                <h1 className="h1">Selamat Datang di Toko Sayur Segar</h1>
                 <h2 className="h2">Dapatkan sayur segar berkualitas tinggi untuk keluarga Anda. Segar, sehat, dan penuh manfaat!</h2>
                 
                 {isLoggedIn && (
@@ -81,33 +69,24 @@ function Dashboard({ isLoggedIn, onLoginToggle }) {
                     </button>
                 )}
                 <div className="product-list">
-                    {products.map((product) => (
-                        <div key={product.id} className="product-card">
-                            <img src={product.image} alt={product.name} className="product-image" />
-                            <h3 className="product-name">{product.name}</h3>
-                            <p className="product-price">Harga: Rp {product.price.toLocaleString()}</p>
-                            <p className="product-weight">Berat: {product.weight} gram</p>
-                            <div className="button-container">
-                                <button 
-                                    className="button buy-now-button" 
-                                    onClick={() => handleBuyNow(product)} // Call the handleBuyNow function
-                                >
-                                    Buy Now
-                                </button>
-                                {isLoggedIn && (
-                                    <>
-                                        <button onClick={() => handleEditProduct(product.id)} className="button edit-button">
-                                            Edit
-                                        </button>
-                                        <button onClick={() => handleDeleteProduct(product.id)} className="button delete-button">
-                                            Hapus
-                                        </button>
-                                    </>
-                                )}
-                            </div>
-                        </div>
-                    ))}
-                </div>
+    {products.map((product) => (
+        <div key={product.id} className="product-card">
+            <img src={product.image} alt={product.name} className="product-image" />
+            <h3 className="product-name">{product.name}</h3>
+            <p className="product-price">Harga: Rp {product.price.toLocaleString()}</p>
+            <p className="product-weight">Berat: {product.weight} gram</p>
+            <div className="button-container">
+                <button 
+                    className="button buy-now-button" 
+                    onClick={() => handleBuyNow(product)} // Call the handleBuyNow function
+                >
+                    Beli sekarang
+                </button>
+            </div>
+        </div>
+    ))}
+</div>
+
             </div>
         </div>
     );

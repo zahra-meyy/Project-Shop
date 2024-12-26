@@ -1,50 +1,53 @@
-// src/Component/Login.js
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-// import Swal from 'sweetalert2'; // 
-import '../Css/Login.css';
+import Navbar from './Navbar'; // Import Navbar component
+import '../Css/Login.css'; // Import file CSS
 
-function Login({ onLogin }) {
-    const [username, setUsername] = useState('');
+const Login = () => {
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Username:", username); // Debugging
-        console.log("Password:", password); // Debugging
-        
-        // Dummy authentication logic
-        if (username === 'admin' && password === 'admin') {
-            onLogin(true); // Notify App about successful login
-            navigate('/'); // Redirect to Dashboard
-        } else {
-            alert('Invalid credentials');
-        }
+        // Handle login logic here
+        console.log('Email:', email);
+        console.log('Password:', password);
+        navigate('/'); // Navigate to the homepage after login
     };
 
     return (
-        <div className="login-page">
-            <div className="login-card">
-                <h1>Login</h1>
-                <form onSubmit={handleSubmit}>
+        <div className="login-container">
+            <Navbar isLoggedIn={false} onLoginToggle={() => {}} /> {/* Add Navbar here */}
+            
+            <form onSubmit={handleSubmit} className="login-form">
+                <h2 className="login-title">Login</h2>
+                <div className="input-group">
+                    <label htmlFor="email" className="input-label">Email:</label>
                     <input
-                        type="text"
-                        placeholder="Username"
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                        className="input-field"
                     />
+                </div>
+                <div className="input-group">
+                    <label htmlFor="password" className="input-label">Password:</label>
                     <input
                         type="password"
-                        placeholder="Password"
+                        id="password"
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
+                        required
+                        className="input-field"
                     />
-                    <button type="submit">Login</button>
-                </form>
-            </div>
+                </div>
+                <button type="submit" className="login-button">Login</button>
+            </form>
         </div>
     );
-}
+};
 
 export default Login;
