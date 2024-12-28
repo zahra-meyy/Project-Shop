@@ -1,26 +1,25 @@
-/* Login.css */
-
 /* Kontainer login */
 .login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Memastikan konten dimulai dari atas */
-    height: 100vh;
-    background:  #81c784;
-    padding-top: 60px; /* Memberikan ruang untuk navbar */
+    justify-content: flex-start; /* Konten tetap mulai dari atas */
+    height: 100vh; /* Sesuaikan tinggi layar penuh */
+    background: #A8D5BA;
+    padding-top: 100px; /* Tambahkan padding untuk menggeser form ke bawah */
+    padding-left: 15px; /* Menambahkan padding kiri */
+    padding-right: 15px; /* Menambahkan padding kanan */
 }
 
 /* Styling untuk form login */
 .login-form {
-    width: 300px;
+    width: 100%;
+    max-width: 400px; /* Lebar maksimal form */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     background-color: #A8D5BA; /* Warna hijau soft */
     color: white;
-    top: 50px;
-    margin-top: 30px;
 }
 
 /* Judul form */
@@ -62,7 +61,77 @@
 }
 
 .login-button:hover {
-    background-color: #81c784;
+    background-color: #66bb6a; /* Warna lebih gelap saat hover */
 }
 
-/* Styling Navbar */
+.password-input-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.show-password-button {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    font-size: 1.2rem;  /* Ukuran font ikon */
+}
+
+.show-password-button:hover {
+    text-decoration: underline;
+}
+
+/* Responsif untuk layar dengan lebar kurang dari 600px */
+@media (max-width: 600px) {
+    .login-container {
+        padding-top: 50px; /* Mengurangi padding atas di layar kecil */
+    }
+
+    .login-form {
+        width: 100%; /* Form menyesuaikan lebar layar */
+        max-width: 100%; /* Memastikan form tidak terlalu besar */
+    }
+
+    .login-title {
+        font-size: 20px; /* Menyesuaikan ukuran font pada judul */
+    }
+
+    .input-field {
+        padding: 8px; /* Mengurangi padding agar lebih kompak */
+        font-size: 14px; /* Menyesuaikan ukuran font */
+    }
+
+    .login-button {
+        padding: 12px; /* Menyesuaikan padding untuk tombol login */
+        font-size: 14px; /* Menyesuaikan ukuran font pada tombol */
+    }
+
+    .show-password-button {
+        font-size: 1rem; /* Menyesuaikan ukuran font ikon */
+    }
+}
+
+/* Responsif untuk layar dengan lebar kurang dari 400px */
+@media (max-width: 400px) {
+    .login-container {
+        padding-top: 30px; /* Mengurangi padding atas pada layar lebih kecil */
+    }
+
+    .login-form {
+        padding: 15px;
+    }
+
+    .login-title {
+        font-size: 18px; /* Menurunkan ukuran font judul lebih kecil */
+    }
+
+    .input-field {
+        padding: 6px; /* Mengurangi padding pada input */
+        font-size: 12px; /* Mengurangi ukuran font input */
+    }
+
+    .login-button {
+        padding: 10px; /* Mengurangi padding pada tombol login */
+        font-size: 12px; /* Mengurangi ukuran font tombol login */
+    }
+}

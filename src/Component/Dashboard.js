@@ -13,6 +13,7 @@ import image8 from '../../src/image/Jamue Shitake.webp';
 import image9 from '../../src/image/SELADA.jpg';
 import image10 from '../../src/image/WORTELL.jpg';
 import '../Css/Dashboard.css';
+import { CgColorBucket } from 'react-icons/cg';
 
 function Dashboard({ isLoggedIn, onLoginToggle }) {
     const navigate = useNavigate(); // Inisialisasi navigate dengan benar
@@ -25,9 +26,9 @@ function Dashboard({ isLoggedIn, onLoginToggle }) {
         { id: 5, name: 'Sayur Sawi Putih', image: image5, price: 150000, weight: 1.5 },
         { id: 6, name: 'Pare', image: image6, price: 250000, weight: 0.5 },
         { id: 7, name: 'Paprika', image: image7, price: 250000, weight: 0.5 },
-        { id: 8, name: 'Jamur Shitake', image: image8, price: 250000, weight: 0.5 },
-        { id: 9, name: 'Selada', image: image9, price: 250000, weight: 0.5 },
-        { id: 10, name: 'Wortel', image: image10, price: 250000, weight: 0.5 },
+        { id: 8, name: 'Jamur Shitake', image: image8, price: 350000, weight: 0.5 },
+        { id: 9, name: 'Selada', image: image9, price: 10000, weight: 0.5 },
+        { id: 10, name: 'Wortel', image: image10, price: 500000, weight: 0.5 },
     ]);
 
     const handleAddProduct = () => {
@@ -44,10 +45,10 @@ function Dashboard({ isLoggedIn, onLoginToggle }) {
     const handleBuyNow = (product) => {
         // Gunakan SweetAlert2 untuk menampilkan pesan
         Swal.fire({
-            title: 'Produk Ditambahkan!',
-            text: `Anda telah menambahkan ${product.name} ke keranjang.`,
+            title: `${product.name} berhasil di beli!`,
+            text: `Anda telah membeli ${product.name} terimakasih.`,
             icon: 'success',
-            confirmButtonText: 'Lanjutkan Belanja',
+            confirmButtonText: 'Ok',
         }).then((result) => {
             if (result.isConfirmed) {
                 // Setelah konfirmasi, arahkan ke halaman checkout (misalnya)
@@ -60,7 +61,7 @@ function Dashboard({ isLoggedIn, onLoginToggle }) {
         <div className="dashboard">
             <Navbar isLoggedIn={isLoggedIn} onLoginToggle={onLoginToggle} />
             <div className="container">
-                <h1 className="h1">Selamat Datang di Toko Sayur Segar</h1>
+                <h1 style={{ color: '#fff', textAlign: 'center', fontWeight: 'bold' }}>Selamat Datang di Toko Sayur Segar</h1>
                 <h2 className="h2">Dapatkan sayur segar berkualitas tinggi untuk keluarga Anda. Segar, sehat, dan penuh manfaat!</h2>
                 
                 {isLoggedIn && (

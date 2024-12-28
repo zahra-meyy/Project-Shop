@@ -1,4 +1,6 @@
-/* src/Css/Dashboard.css */
+/* Dashboard.css */
+
+/* General container styles remain unchanged */
 .dashboard {
     display: flex;
     flex-direction: column;
@@ -7,30 +9,15 @@
 }
 
 .container {
-    padding: 50px 30px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     flex-grow: 1;
+    margin-top: 70px;
 }
-.h1 {
-    font-size: 36px;
-    font-weight: 700;
-    color: white;
-    background: linear-gradient(45deg, #6a9c8e, #ff9e9e);
-    -webkit-background-clip: text;
-    background-clip: text;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-    padding: 10px;
-    margin-bottom: 20px;
-    position: absolute; /* Menetapkan posisi absolut */
-    top: 38px; /* Mengurangi jarak dari atas */
-    left: 50%; /* Menempatkan elemen di tengah secara horizontal */
-    transform: translateX(-50%); /* Menyesuaikan posisi agar tepat di tengah */
-}
-
 
 .h2 {
     font-size: 22px;
@@ -45,13 +32,13 @@
     margin-bottom: 5px;
 }
 
-
+/* Product List */
 .product-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 20px;
     justify-content: center;
-    top: 50px;
+    margin-top: 20px;
 }
 
 .product-card {
@@ -61,26 +48,25 @@
     overflow: hidden;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
     padding: 20px;
-    margin-top: 30px;
     text-align: center;
 }
 
 .product-image {
-    width: 90%;
+    width: 100%;
     height: 150px;
     object-fit: cover;
     border-radius: 8px;
 }
 
 .product-name {
-    font-size: 1.2em;
+    font-size: 1.1em;
     color: #3b6f4f;
     font-weight: bold;
-    margin: 15px 0;
+    margin: 10px 0;
 }
 
 .product-price, .product-weight {
-    font-size: 1em;
+    font-size: 0.9em;
     color: #555;
 }
 
@@ -95,12 +81,13 @@
 
 .button-container {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+    gap: 10px;
     margin-top: 10px;
 }
 
 .button {
-    padding: 8px 20px;
+    padding: 8px 15px;
     font-size: 0.9em;
     border: none;
     border-radius: 5px;
@@ -111,7 +98,6 @@
     background-color: #81c784;
     color: white;
     font-weight: bold;
-    justify-content: center;
 }
 
 .add-product-button {
@@ -123,4 +109,77 @@
     border-radius: 5px;
     margin-bottom: 20px;
     cursor: pointer;
+}
+
+/* --- Responsive Design --- */
+
+/* Medium Devices (Tablets, 768px and above) */
+@media (max-width: 768px) {
+    .product-list {
+        gap: 15px;
+    }
+
+    .product-card {
+        width: 160px;
+        padding: 15px;
+    }
+
+    .product-image {
+        height: 120px;
+    }
+
+    .product-name {
+        font-size: 1em;
+    }
+
+    .product-price, .product-weight {
+        font-size: 0.85em;
+    }
+
+    .button {
+        padding: 6px 12px;
+        font-size: 0.8em;
+    }
+}
+
+/* Small Devices (Phones, 480px and below) */
+@media (max-width: 480px) {
+    .container {
+        padding: 10px;
+    }
+
+    .h2 {
+        font-size: 18px;
+    }
+
+    .product-list {
+        gap: 10px;
+    }
+
+    .product-card {
+        width: 140px;
+        padding: 10px;
+    }
+
+    .product-image {
+        height: 100px;
+    }
+
+    .product-name {
+        font-size: 0.9em;
+    }
+
+    .product-price, .product-weight {
+        font-size: 0.8em;
+    }
+
+    .button {
+        padding: 5px 10px;
+        font-size: 0.75em;
+    }
+
+    .add-product-button {
+        font-size: 0.9em;
+        padding: 8px 15px;
+    }
 }

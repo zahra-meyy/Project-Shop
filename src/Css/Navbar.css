@@ -1,32 +1,82 @@
 /* src/Css/Navbar.css */
 .navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background-color: #A8D5BA;
+    display: flex; /* Menjadikan navbar sebagai flex container */
+    justify-content: space-between; /* Memisahkan brand di kiri dan menu di kanan */
+    align-items: center; /* Memastikan elemen ter-align secara vertikal */
+    background-color: #A8D5BA; /* Warna hijau pastel */
     color: white;
     padding: 15px 30px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    border-bottom: 2px solid #6f9e7d; /* Garis bawah yang halus */
+    margin-top: 0;
+    width: 100%; /* Navbar memenuhi lebar layar */
 }
 
+/* Styling untuk brand (sebelah kiri) */
 .navbar .brand {
-    font-size: 2em;
-    font-weight: bold;
+    font-size: 2.2em;
+    font-weight: 700;
     color: white;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
+    text-transform: uppercase; /* Menambahkan huruf kapital */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.navbar .menu {
+/* Styling menu (navbar-nav) di kanan */
+.navbar .navbar-nav {
     display: flex;
-    gap: 15px;
+    gap: 20px; /* Jarak antar item menu */
+    font-weight: 500;
+    margin-left: left; /* Memastikan menu berada di kanan */
 }
 
-.navbar .menu-item {
-    color: white;
+.navbar .nav-link {
+    display: inline-block;
+    padding: 12px 25px;
+    margin: 5px;
+    font-size: 16px;
     text-decoration: none;
-    font-size: 1.1em;
+    color: white;
+    background-color: #8BC34A; /* Hijau soft */
+    border-radius: 25px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-.navbar .menu-item:hover {
-    color: #6f9e7d;
+/* Efek hover pada nav-link */
+.navbar .nav-link:hover {
+    background-color: #7CB342; /* Hijau lebih gelap untuk hover */
+    transform: scale(1.05); /* Membesar saat hover */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Tambah bayangan */
+}
+
+/* Efek saat nav-link di-klik (active) */
+.navbar .nav-link:active {
+    background-color: #689F38; /* Hijau lebih gelap saat diklik */
+    transform: scale(1); /* Mengembalikan ukuran saat klik */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Bayangan lebih lembut */
+}
+
+/* Styling untuk responsive navbar */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Navbar menjadi vertikal pada mobile */
+        align-items: flex-start;
+        padding: 20px; /* Menambahkan padding untuk tampilan mobile */
+    }
+
+    .navbar .navbar-nav {
+        flex-direction: column;
+        gap: 10px;
+        margin-left: 0;
+    }
+
+    .navbar .brand {
+        font-size: 1.8em;
+    }
 }

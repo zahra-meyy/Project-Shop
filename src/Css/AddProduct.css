@@ -1,46 +1,119 @@
+/* AddProduct.css */
+
+/* Mengatur warna latar belakang halaman */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #eaf6f2; /* Hijau pastel terang */
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Styling untuk container form */
 .add-product-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 0 15px; /* Menambahkan sedikit padding agar lebih responsif di layar kecil */
+}
+
+/* Styling untuk form */
+.add-product-form {
+    background-color: #ffffff; /* Putih untuk form */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     width: 50%;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-
-h2 {
+    max-width: 500px;
     text-align: center;
+    box-sizing: border-box;
 }
 
-label {
-    display: block;
-    margin-bottom: 10px;
+/* Judul Form */
+.form-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #2f6d5e; /* Hijau pastel gelap */
+    margin-bottom: 20px;
 }
 
-input {
+/* Styling untuk input fields */
+.input-field {
     width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px;
+    margin: 10px 0;
+    border: 2px solid #b7d8d2; /* Border hijau pastel terang */
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #4CAF50;
+.input-field:focus {
+    border-color: #66b28e; /* Border hijau pastel lebih gelap saat fokus */
+    outline: none;
+}
+
+/* Styling untuk tombol submit */
+.submit-button {
+    background-color: #66b28e; /* Hijau pastel */
     color: white;
     border: none;
-    border-radius: 4px;
+    padding: 15px 30px;
+    border-radius: 5px;
+    font-size: 16px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-button[type="button"] {
-    background-color: #f44336;
+.submit-button:hover {
+    background-color: #4c9a72; /* Efek hover dengan hijau pastel lebih gelap */
 }
 
-button:hover {
-    opacity: 0.8;
+.submit-button:focus {
+    outline: none;
 }
 
-.modal-actions {
-    display: flex;
-    justify-content: space-between;
+/* Responsif untuk layar dengan lebar kurang dari 600px */
+@media (max-width: 600px) {
+    .add-product-container {
+        height: auto;
+        padding-top: 20px; /* Memberikan ruang atas di layar kecil */
+    }
+
+    .add-product-form {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .form-title {
+        font-size: 20px;
+    }
+
+    .input-field {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .submit-button {
+        padding: 12px 25px;
+        font-size: 14px;
+    }
+}
+
+/* Responsif untuk layar dengan lebar kurang dari 400px */
+@media (max-width: 400px) {
+    .form-title {
+        font-size: 18px;
+    }
+
+    .input-field {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    .submit-button {
+        padding: 10px 20px;
+        font-size: 12px;
+    }
 }

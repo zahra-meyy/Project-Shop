@@ -1,0 +1,174 @@
+/* Container styling */
+.zahra {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
+  font-family: "Arial", sans-serif;
+  color: #fff;
+  padding: 0 10px; /* Tambahkan padding untuk memastikan konten tidak menempel ke tepi layar */
+}
+
+/* Card styling */
+.mark {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  padding: 20px 30px;
+  color: #333;
+  margin: 10px;
+}
+
+/* Card title styling */
+.card-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #56ab2f;
+}
+
+/* Input group styling */
+.mark-group {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.input-group-text {
+  background: #56ab2f;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  display: flex;
+  align-items: center;
+}
+
+.input-group .form-control {
+  border: none;
+  outline: none;
+  padding: 10px;
+  width: 100%; /* Pastikan input mengisi seluruh lebar */
+}
+
+.input-group .form-control::placeholder {
+  color: #bbb;
+}
+
+/* Button styling */
+.btn {
+  font-size: 1rem;
+  font-weight: bold;
+  background: #56ab2f;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background 0.3s ease;
+  width: 100%; /* Agar tombol mengisi seluruh lebar */
+}
+
+.btn:hover {
+  background: #a8e063;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(86, 171, 47, 0.3);
+}
+
+/* Error message */
+.error-message {
+  color: #d9534f;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Hyperlink styling */
+.text-center a {
+  text-decoration: none;
+  color: #56ab2f;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.text-center a:hover {
+  color: #a8e063;
+}
+
+/* Button to toggle password visibility */
+.btn-outline-secondary {
+  border: none;
+  background: transparent;
+  color: #56ab2f;
+}
+
+.btn-outline-secondary:hover {
+  color: #a8e063;
+}
+
+/* Media Queries for Mobile Responsiveness */
+@media (max-width: 768px) {
+  .mark {
+      width: 90%;
+      padding: 20px;
+  }
+
+  .card-title {
+      font-size: 1.5rem;
+  }
+
+  .input-group .form-control {
+      font-size: 14px;
+      padding: 8px;
+  }
+
+  .btn {
+      font-size: 0.9rem;
+      padding: 8px 15px;
+  }
+
+  .btn-outline-secondary {
+      font-size: 1rem;
+  }
+
+  .error-message {
+      font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-title {
+      font-size: 1.2rem;
+  }
+
+  .input-group .form-control {
+      font-size: 14px;
+      padding: 7px;
+  }
+
+  .btn {
+      font-size: 0.8rem;
+      padding: 7px 12px;
+  }
+
+  .mark {
+      padding: 15px;
+  }
+
+  .btn-outline-secondary {
+      font-size: 1rem;
+  }
+
+  .error-message {
+      font-size: 0.75rem;
+  }
+}

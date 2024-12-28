@@ -1,5 +1,4 @@
-/* Product.css */
-
+/* Base Styles */
 .product-container {
     background-color: #81c784;
     padding: 20px;
@@ -7,34 +6,34 @@
 }
 
 .product-table-container {
-    max-width: 1200px;
-    margin: 0 auto;
+    max-width: 1100px;
+    margin: 120px auto;
     padding: 20px;
 }
 
-.add-product-button {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #4CAF50;
+/* Button Styles */
+.tambah-btn {
+    background-color: #66b28e; /* Hijau pastel */
     color: white;
+    border: none;
+    padding: 10px 20px;
     border-radius: 5px;
-    text-decoration: none;
-    margin-bottom: 20px;
-}
-
-.add-product-button:hover {
-    background-color: #45a049;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .product-table {
-    width: 100%;
+    width: 90%;
     border-collapse: collapse;
     margin-top: 20px;
     background-color: white;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-.product-table th, .product-table td {
+.product-table th,
+.product-table td {
     padding: 12px 15px;
     text-align: left;
     border: 1px solid #ddd;
@@ -53,7 +52,8 @@
     background-color: #f1f1f1;
 }
 
-.edit-button, .delete-button {
+.edit-button,
+.delete-button {
     padding: 8px 16px;
     border-radius: 5px;
     text-decoration: none;
@@ -78,4 +78,94 @@
 
 .delete-button:hover {
     background-color: #d14e26;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .product-table-container {
+        margin-top: 80px;
+    }
+
+    /* Reduce padding and table width on smaller screens */
+    .product-table {
+        width: 100%;
+        font-size: 12px;
+    }
+
+    .product-table th,
+    .product-table td {
+        padding: 8px 10px;
+    }
+
+    .product-table td img {
+        width: 40px;
+        height: 40px;
+    }
+
+    .product-table th {
+        font-size: 14px;
+    }
+
+    .product-table td {
+        font-size: 12px;
+    }
+
+    /* Stack the table contents for mobile view */
+    .product-table td, .product-table th {
+        display: block;
+        text-align: right;
+        width: 100%;
+    }
+
+    .product-table th {
+        position: absolute;
+        left: -9999px;
+    }
+
+    .product-table tr {
+        display: flex;
+        flex-direction: column;
+        border: none;
+        margin-bottom: 20px;
+    }
+
+    .edit-button, .delete-button {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .product-table td .edit-button, .product-table td .delete-button {
+        margin-bottom: 5px;
+    }
+
+    /* Add a separate container for buttons */
+    .add-product-button {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    /* For very small screens (e.g., mobile phones) */
+    .tambah-btn {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    .product-table td, .product-table th {
+        font-size: 10px;
+    }
+
+    .product-table td {
+        padding: 6px 8px;
+    }
+
+    .product-table img {
+        width: 30px;
+        height: 30px;
+    }
+
+    .edit-button, .delete-button {
+        font-size: 10px;
+    }
 }

@@ -1,39 +1,82 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import axios from 'axios';
+import Swal from 'sweetalert2';
 import '../Css/EditProduct.css';
 
-function EditProduct({ products, updateProduct }) {
+function EditProduct() {
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [weight, setWeight] = useState('');
     const navigate = useNavigate();
-    const { id } = useParams();
+    const { id } = useParams(); // Mengambil ID dari URL
 
-    // Populate form fields with product data
+    // Fetch data produk berdasarkan ID ketika komponen pertama kali dimuat
     useEffect(() => {
-        const product = products.find((product) => product.id === parseInt(id));
-        if (product) {
-            setName(product.name);
-            setPrice(product.price);
-            setWeight(product.weight);
-        }
-    }, [id, products]);
+        axios.get(`http://localhost:9090/api/data/editById/${id}`)
+            .then((response) => {
+                const product = response.data;
+                setName(product.name);
+                setPrice(product.price);
+                setWeight(product.weight);
+            })
+            .catch((error) => {
+                console.error("Error fetching product:", error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Produk tidak ditemukan!',
+                    text: 'Redirecting ke halaman produk...',
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+                setTimeout(() => navigate('/product'), 2000); // Redirect setelah 2 detik
+            });
+    }, [id, navigate]);
 
+    // Handle submit form
     const handleSubmit = (e) => {
         e.preventDefault();
-
-        // Create updated product object
+    
+        // Validasi data
+        if (!name || !price || !weight) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Semua field harus diisi',
+                text: 'Pastikan semua kolom diisi dengan benar.',
+                showConfirmButton: true,
+            });
+            return;
+        }
+    
         const updatedProduct = {
             id: parseInt(id),
             name,
             price: parseFloat(price),
             weight: parseFloat(weight),
         };
-
-        // Update product and navigate back to the product list
-        updateProduct(updatedProduct);
-        navigate('/product');
+    
+        // Kirim data ke server menggunakan PUT
+        axios.put(`http://localhost:9090/api/data/editById/${id}`, updatedProduct)
+            .then((response) => {
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Produk berhasil diperbarui!',
+                    timer: 2000,
+                    showConfirmButton: false,
+                });
+                setTimeout(() => navigate('/product'), 2000); // Redirect setelah 2 detik
+            })
+            .catch((error) => {
+                console.error("Error updating product:", error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Gagal memperbarui produk',
+                    text: 'Silakan coba lagi nanti.',
+                    showConfirmButton: true,
+                });
+            });
     };
+    
 
     return (
         <div className="edit-product-container">
