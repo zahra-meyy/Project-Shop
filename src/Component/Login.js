@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FaEye, FaEyeSlash } from 'react-icons/fa'; // Import ikon mata dari react-icons
+import axios from 'axios'; // Import axios
 import '../Css/Login.css'; // Import file CSS
+import { API_LOGIN } from '../utils/BaseUrl';
 
 const Login = () => {
     const [email, setEmail] = useState('');
@@ -20,35 +22,32 @@ const Login = () => {
         };
 
         try {
-            // Mengirimkan permintaan POST ke API login
-            const response = await fetch('http://localhost:9090/api/login', {
-                method: 'POST',
+            // Mengirimkan permintaan POST ke API login dengan axios
+            const response = await axios.post(API_LOGIN, loginData, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(loginData),
             });
 
             // Mengecek apakah request berhasil
-            if (response.ok) {
-                const data = await response.json();
-                
-                // Menyimpan token ke localStorage
-                localStorage.setItem("authToken", data.token); // Simpan token
-                localStorage.setItem("idAdmin", data.adminData.id); // Simpan ID adminData
-                localStorage.setItem("adminData", JSON.stringify(data.adminData)); 
+            const data = response.data;
 
-                // Jika login berhasil, simpan data (misalnya token) atau status login
-                console.log('Login berhasil:', data);
+            // Menyimpan token ke localStorage
+            localStorage.setItem("authToken", data.token); // Simpan token
+            localStorage.setItem("idAdmin", data.adminData.id); // Simpan ID adminData
+            localStorage.setItem("adminData", JSON.stringify(data.adminData)); 
 
-                // Redirect ke halaman produk setelah login sukses
-                navigate('/Product');
-            } else {
-                const errorData = await response.json();
-                setError(errorData.message || 'Login gagal, silakan coba lagi.');
-            }
+            // Jika login berhasil, simpan data (misalnya token) atau status login
+            console.log('Login berhasil:', data);
+
+            // Redirect ke halaman produk setelah login sukses
+            navigate('/Product');
         } catch (error) {
-            setError('Terjadi kesalahan saat login. Silakan coba lagi.');
+            if (error.response && error.response.data) {
+                setError(error.response.data.message || 'Login gagal, silakan coba lagi.');
+            } else {
+                setError('Terjadi kesalahan saat login. Silakan coba lagi.');
+            }
             console.error('Error:', error);
         }
     };

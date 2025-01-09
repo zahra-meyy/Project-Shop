@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import axios from 'axios'; // Import axios
 import '../Css/AddProduct.css';
 
 function AddProduct() {
@@ -24,18 +25,12 @@ function AddProduct() {
         };
 
         try {
-            // Mengirim permintaan POST ke API dengan ID admin
-            const response = await fetch(`http://localhost:9090/api/data/tambah/${idAdmin}`, {
-                method: 'POST',
+            // Mengirim permintaan POST ke API dengan ID admin menggunakan axios
+            const response = await axios.post(`http://localhost:9090/api/data/tambah/${idAdmin}`, newProduct, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(newProduct),
             });
-
-            if (!response.ok) {
-                throw new Error('Gagal menambahkan produk');
-            }
 
             Swal.fire({
                 icon: 'success',

@@ -4,6 +4,7 @@ import axios from 'axios'; // Import Axios
 import Swal from 'sweetalert2'; // Untuk notifikasi
 import Navbar from './Navbar';
 import '../Css/Product.css';
+import { API_PRODUCT } from '../utils/BaseUrl';
 
 function Product({ isLoggedIn, onLoginToggle }) {
     const [products, setProducts] = useState([]);
@@ -15,7 +16,7 @@ function Product({ isLoggedIn, onLoginToggle }) {
         if (!idAdmin) return;
         
         try {
-            const response = await axios.get(`http://localhost:9090/api/data/getAllByAdmin/${idAdmin}`);
+            const response = await axios.get(`${API_PRODUCT}/getAllByAdmin/${idAdmin}`);
             console.log('API Response:', response.data); // Debugging response
             
             if (response.status === 200 && response.data) {
@@ -46,7 +47,7 @@ function Product({ isLoggedIn, onLoginToggle }) {
         if (confirmation.isConfirmed) {
             try {
                 // Mengirim request untuk menghapus produk berdasarkan ID
-                const response = await axios.delete(`http://localhost:9090/api/data/delete/${id}`);
+                const response = await axios.delete(`${API_PRODUCT}/delete/${id}`);
     
                 // Memeriksa apakah request berhasil
                 if (response.status === 200) {

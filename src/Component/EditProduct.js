@@ -3,6 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import '../Css/EditProduct.css';
+import { API_PRODUCT } from '../utils/BaseUrl';
 
 function EditProduct() {
     const [name, setName] = useState('');
@@ -13,7 +14,7 @@ function EditProduct() {
 
     // Fetch data produk berdasarkan ID ketika komponen pertama kali dimuat
     useEffect(() => {
-        axios.get(`http://localhost:9090/api/data/editById/${id}`)
+        axios.get(`${API_PRODUCT}/editById/${id}`)
             .then((response) => {
                 const product = response.data;
                 setName(product.name);
@@ -56,7 +57,7 @@ function EditProduct() {
         };
     
         // Kirim data ke server menggunakan PUT
-        axios.put(`http://localhost:9090/api/data/editById/${id}`, updatedProduct)
+        axios.put(`${API_PRODUCT}/data/editById/${id}`, updatedProduct)
             .then((response) => {
                 Swal.fire({
                     icon: 'success',
