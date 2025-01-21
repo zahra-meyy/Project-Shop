@@ -76,14 +76,7 @@ function Dashboard({ isLoggedIn, onLoginToggle }) {
             <h3 className="product-name">{product.name}</h3>
             <p className="product-price">Harga: Rp {product.price.toLocaleString()}</p>
             <p className="product-weight">Berat: {product.weight} gram</p>
-            <div className="button-container">
-                <button 
-                    className="button buy-now-button" 
-                    onClick={() => handleBuyNow(product)} // Call the handleBuyNow function
-                >
-                    Beli sekarang
-                </button>
-            </div>
+        
         </div>
     ))}
 </div>

@@ -1,15 +1,18 @@
 /* Kontainer login */
+/* Kontainer login */
+/* Kontainer login */
 .login-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start; /* Konten tetap mulai dari atas */
     height: 100vh; /* Sesuaikan tinggi layar penuh */
-    background: #A8D5BA;
+    background: #81c784; /* Ubah ke warna hijau tua namun cerah */
     padding-top: 100px; /* Tambahkan padding untuk menggeser form ke bawah */
     padding-left: 15px; /* Menambahkan padding kiri */
     padding-right: 15px; /* Menambahkan padding kanan */
 }
+
 
 /* Styling untuk form login */
 .login-form {

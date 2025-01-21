@@ -12,7 +12,7 @@
 }
 
 /* Button Styles */
-.tambah-btn {
+.JAEMIN-btn {
     background-color: #66b28e; /* Hijau pastel */
     color: white;
     border: none;
@@ -23,7 +23,6 @@
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
-
 .product-table {
     width: 90%;
     border-collapse: collapse;
@@ -61,23 +60,23 @@
 }
 
 .edit-button {
-    background-color: #007BFF;
+    background-color:#A5D6A7;
     color: white;
     margin-right: 10px;
 }
 
 .edit-button:hover {
-    background-color: #0056b3;
+    background-color:#81C784;
 }
 
 .delete-button {
-    background-color: #FF5733;
+    background-color: #FF8A80;
     color: white;
     border: none;
 }
 
 .delete-button:hover {
-    background-color: #d14e26;
+    background-color:#FF5252;
 }
 
 /* Responsive Styles */

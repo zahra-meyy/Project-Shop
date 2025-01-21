@@ -89,7 +89,7 @@ const Login = () => {
                             onClick={() => setShowPassword(!showPassword)} // Toggle showPassword
                         >
                             {/* Menampilkan ikon mata */}
-                            {showPassword ? <FaEyeSlash /> : <FaEye />}
+                            {showPassword ? <FaEye /> : <FaEyeSlash />}
                         </button>
                     </div>
                 </div>

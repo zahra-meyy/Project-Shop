@@ -4,7 +4,7 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
+  background:  #81c784;
   font-family: "Arial", sans-serif;
   color: #fff;
   padding: 0 10px; /* Tambahkan padding untuk memastikan konten tidak menempel ke tepi layar */
@@ -28,7 +28,7 @@
   font-size: 1.8rem;
   font-weight: bold;
   margin-bottom: 20px;
-  color: #56ab2f;
+  color: #A8D5BA;
 }
 
 /* Input group styling */
@@ -42,7 +42,7 @@
 }
 
 .input-group-text {
-  background: #56ab2f;
+  background:  #A8D5BA;
   color: #fff;
   padding: 10px;
   border: none;
@@ -65,7 +65,7 @@
 .btn {
   font-size: 1rem;
   font-weight: bold;
-  background: #56ab2f;
+  background:  #81c784;
   color: #fff;
   border: none;
   padding: 10px 20px;
@@ -76,7 +76,7 @@
 }
 
 .btn:hover {
-  background: #a8e063;
+  background:  #A8D5BA;
 }
 
 .btn:focus {
@@ -95,24 +95,24 @@
 /* Hyperlink styling */
 .text-center a {
   text-decoration: none;
-  color: #56ab2f;
+  color:  #A8D5BA;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
 .text-center a:hover {
-  color: #a8e063;
+  color: #A8D5BA;
 }
 
 /* Button to toggle password visibility */
 .btn-outline-secondary {
   border: none;
   background: transparent;
-  color: #56ab2f;
+  color:  #A8D5BA;
 }
 
 .btn-outline-secondary:hover {
-  color: #a8e063;
+  color:  #A8D5BA;
 }
 
 /* Media Queries for Mobile Responsiveness */

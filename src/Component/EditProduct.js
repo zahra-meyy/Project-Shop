@@ -1,113 +1,148 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import axios from 'axios';
 import Swal from 'sweetalert2';
+import axios from 'axios';
 import '../Css/EditProduct.css';
-import { API_PRODUCT } from '../utils/BaseUrl';
 
-function EditProduct() {
-    const [name, setName] = useState('');
-    const [price, setPrice] = useState('');
-    const [weight, setWeight] = useState('');
-    const navigate = useNavigate();
-    const { id } = useParams(); // Mengambil ID dari URL
+const EditProduct = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
+  
+  const [product, setProduct] = useState(null);
+  const [name, setName] = useState('');
+  const [price, setPrice] = useState('');
+  const [weight, setWeight] = useState('');
+  const [image, setImage] = useState(null); // state untuk gambar
+  const [loading, setLoading] = useState(true); // state loading
+  const adminData = JSON.parse(localStorage.getItem('adminData'));
+  const idAdmin = adminData ? adminData.id : null;
 
-    // Fetch data produk berdasarkan ID ketika komponen pertama kali dimuat
-    useEffect(() => {
-        axios.get(`${API_PRODUCT}/editById/${id}`)
-            .then((response) => {
-                const product = response.data;
-                setName(product.name);
-                setPrice(product.price);
-                setWeight(product.weight);
-            })
-            .catch((error) => {
-                console.error("Error fetching product:", error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Produk tidak ditemukan!',
-                    text: 'Redirecting ke halaman produk...',
-                    timer: 2000,
-                    showConfirmButton: false
-                });
-                setTimeout(() => navigate('/product'), 2000); // Redirect setelah 2 detik
-            });
-    }, [id, navigate]);
-
-    // Handle submit form
-    const handleSubmit = (e) => {
-        e.preventDefault();
-    
-        // Validasi data
-        if (!name || !price || !weight) {
-            Swal.fire({
-                icon: 'error',
-                title: 'Semua field harus diisi',
-                text: 'Pastikan semua kolom diisi dengan benar.',
-                showConfirmButton: true,
-            });
-            return;
-        }
-    
-        const updatedProduct = {
-            id: parseInt(id),
-            name,
-            price: parseFloat(price),
-            weight: parseFloat(weight),
-        };
-    
-        // Kirim data ke server menggunakan PUT
-        axios.put(`${API_PRODUCT}/data/editById/${id}`, updatedProduct)
-            .then((response) => {
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Produk berhasil diperbarui!',
-                    timer: 2000,
-                    showConfirmButton: false,
-                });
-                setTimeout(() => navigate('/product'), 2000); // Redirect setelah 2 detik
-            })
-            .catch((error) => {
-                console.error("Error updating product:", error);
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Gagal memperbarui produk',
-                    text: 'Silakan coba lagi nanti.',
-                    showConfirmButton: true,
-                });
-            });
+  // Fetch produk yang ingin diubah
+  useEffect(() => {
+    const fetchProduct = async () => {
+      try {
+        const response = await axios.get(`http://localhost:9090/api/data/product/${id}`);
+        const data = response.data;
+        setProduct(data);
+        setName(data.name || '');
+        setPrice(data.price || '');
+        setWeight(data.weight || '');
+      } catch (error) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Produk tidak ditemukan!',
+          text: 'Redirecting ke halaman produk...',
+          timer: 2000,
+          showConfirmButton: false
+        });
+        setTimeout(() => navigate('/product'), 2000);
+      } finally {
+        setLoading(false); // Set loading false setelah data selesai dimuat
+      }
     };
-    
 
-    return (
-        <div className="edit-product-container">
-            <h2>Edit Produk</h2>
-            <form onSubmit={handleSubmit} className="edit-product-form">
-                <label>Nama Produk:</label>
-                <input
-                    type="text"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                    required
-                />
-                <label>Harga:</label>
-                <input
-                    type="number"
-                    value={price}
-                    onChange={(e) => setPrice(e.target.value)}
-                    required
-                />
-                <label>Berat (kg):</label>
-                <input
-                    type="number"
-                    value={weight}
-                    onChange={(e) => setWeight(e.target.value)}
-                    required
-                />
-                <button type="submit">Update Produk</button>
-            </form>
-        </div>
-    );
-}
+    fetchProduct();
+  }, [id, navigate]);
+
+  // Menangani perubahan gambar
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
+
+  // Menangani form submit
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validasi input
+    if (!name || !price || !weight) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Semua kolom wajib diisi!',
+        text: 'Silakan periksa kolom input.'
+      });
+      return;
+    }
+
+    // Menyusun data yang akan dikirim
+    const updatedProduct = {
+      name: name.trim(),
+      price: parseFloat(price),
+      weight: parseFloat(weight),
+    };
+
+    // Menambahkan gambar ke FormData jika ada
+    const formData = new FormData();
+    formData.append('name', updatedProduct.name);
+    formData.append('price', updatedProduct.price);
+    formData.append('weight', updatedProduct.weight);
+    if (image) {
+      formData.append('image', image); // Menambahkan gambar
+    }
+
+    try {
+      const response = await axios.put(`http://localhost:9090/api/data/editById/${id}?idAdmin=${idAdmin}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Pastikan tipe konten multipart
+        }
+      });
+
+      Swal.fire({
+        icon: 'success',
+        title: 'Produk berhasil diperbarui!',
+        timer: 2000,
+        showConfirmButton: false
+      });
+
+      setTimeout(() => navigate('/product'), 2000);
+    } catch (error) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Gagal memperbarui produk',
+        text: 'Silakan coba lagi nanti.',
+        showConfirmButton: true
+      });
+    }
+  };
+
+  // Jika data produk sedang dimuat
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  return (
+    <div className="edit-product-container">
+      <h2>Edit Produk</h2>
+      <form onSubmit={handleSubmit} className="edit-product-form">
+        <label>Nama Produk:</label>
+        <input
+          type="text"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <label>Harga:</label>
+        <input
+          type="number"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+          required
+        />
+        <label>Berat (kg):</label>
+        <input
+          type="number"
+          value={weight}
+          onChange={(e) => setWeight(e.target.value)}
+          required
+        />
+        <label>Gambar Produk:</label>
+        <input
+          type="file"
+          onChange={handleImageChange}
+        />
+        <button type="submit">Update Produk</button>
+      </form>
+    </div>
+  );
+};
 
 export default EditProduct;
