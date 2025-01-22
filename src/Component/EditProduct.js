@@ -24,9 +24,9 @@ const EditProduct = () => {
         const response = await axios.get(`http://localhost:9090/api/data/product/${id}`);
         const data = response.data;
         setProduct(data);
-        setName(data.name || '');
-        setPrice(data.price || '');
-        setWeight(data.weight || '');
+        setName(data.namaSayur || '');
+        setPrice(data.hargaSayur || '');
+        setWeight(data.beratSayur || '');
       } catch (error) {
         Swal.fire({
           icon: 'error',
@@ -65,16 +65,16 @@ const EditProduct = () => {
 
     // Menyusun data yang akan dikirim
     const updatedProduct = {
-      name: name.trim(),
-      price: parseFloat(price),
-      weight: parseFloat(weight),
+      namaSayur: name.trim(),
+      hargaSayur: parseFloat(price),
+      beratSayur: weight.trim(),
     };
 
     // Menambahkan gambar ke FormData jika ada
     const formData = new FormData();
-    formData.append('name', updatedProduct.name);
-    formData.append('price', updatedProduct.price);
-    formData.append('weight', updatedProduct.weight);
+    formData.append('namaSayur', updatedProduct.namaSayur);
+    formData.append('hargaSayur', updatedProduct.hargaSayur);
+    formData.append('beratSayur', updatedProduct.beratSayur);
     if (image) {
       formData.append('image', image); // Menambahkan gambar
     }

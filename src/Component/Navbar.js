@@ -26,7 +26,7 @@ function Navbar({ isLoggedIn, onLoginToggle }) {
                         {/* Navbar saat di halaman login */}
                         {isLoggedIn === null && (
                             <>
-                                <Link to="/" className="nav-link">Home</Link>
+                                <Link to="/" className="nav-link">H </Link>
                                 <Link to="/" onClick={handleLoginClick} className="nav-link">Logout</Link>
                             </>
                         )}
