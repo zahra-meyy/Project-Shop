@@ -66,6 +66,7 @@ function Product({ isLoggedIn, onLoginToggle }) {
       <Navbar isLoggedIn={isLoggedIn} onLoginToggle={onLoginToggle} />
       <div className="product-table-container">
         <div className="add-product-button">
+          <h1 className="mine">Daftar Produk</h1>
           <Link to="/AddProduct">
             <button className="JAEMIN-btn">Tambah Produk</button>
           </Link>
@@ -86,9 +87,9 @@ function Product({ isLoggedIn, onLoginToggle }) {
                 <tr key={product.id}>
                   <td>
                     <img
-                      src={product.image || 'path/to/placeholder.jpg'}
+                      src={product.fotoUrl || 'path/to/placeholder.jpg'}  // Menampilkan foto produk jika ada, jika tidak ada, gunakan placeholder
                       alt={product.namaSayur || 'Gambar tidak tersedia'}
-                      style={{ width: '50px', height: '50px' }}
+                      style={{ width: '110px' , height: '120px' }}
                     />
                   </td>
                   <td>{product.namaSayur}</td>

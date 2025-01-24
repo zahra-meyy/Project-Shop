@@ -1,15 +1,36 @@
 /* Base Styles */
 .product-container {
     background-color: #81c784;
-    padding: 20px;
+    padding: 10px;
     min-height: 100vh;
 }
 
 .product-table-container {
-    max-width: 1100px;
-    margin: 120px auto;
+    max-width: 2100px;
+    margin: 130px auto;
     padding: 20px;
 }
+
+/* CSS untuk class .mine */
+.mine {
+    text-align: center; /* Menempatkan teks di tengah */
+    font-size: 40px; /* Ukuran font lebih besar */
+    font-weight: 700; /* Membuat teks tebal */
+    color: white;/* Warna hijau agar serasi dengan tema */
+    margin: 20px 0; /* Mengurangi jarak atas dan bawah */
+    text-transform: uppercase; /* Membuat teks jadi huruf kapital */
+    letter-spacing: 2px; /* Menambah jarak antar huruf untuk efek lebih modern */
+    font-family: 'Arial', sans-serif; /* Memilih font yang mudah dibaca */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Memberikan bayangan halus pada teks */
+}
+
+/* Efek hover saat mouse berada di atas teks */
+.mine:hover {
+    /* color: #81C784; Ubah warna saat hover */
+    text-decoration: underline; /* Menambahkan garis bawah pada hover */
+}
+
+
 
 /* Button Styles */
 .JAEMIN-btn {
@@ -21,6 +42,7 @@
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    /* text-align: center; */
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
 .product-table {

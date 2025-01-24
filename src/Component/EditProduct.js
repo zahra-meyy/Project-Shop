@@ -21,7 +21,7 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:9090/api/data/product/${id}`);
+        const response = await axios.get(`http://localhost:9090/api/product/data/product/${id}`);
         const data = response.data;
         setProduct(data);
         setName(data.namaSayur || '');
@@ -51,58 +51,70 @@ const EditProduct = () => {
 
   // Menangani form submit
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  
+  // Validasi input
+  if (!name || !price || !weight) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Semua kolom wajib diisi!',
+      text: 'Silakan periksa kolom input.'
+    });
+    return;
+  }
 
-    // Validasi input
-    if (!name || !price || !weight) {
-      Swal.fire({
-        icon: 'warning',
-        title: 'Semua kolom wajib diisi!',
-        text: 'Silakan periksa kolom input.'
-      });
-      return;
-    }
-
-    // Menyusun data yang akan dikirim
-    const updatedProduct = {
-      namaSayur: name.trim(),
-      hargaSayur: parseFloat(price),
-      beratSayur: weight.trim(),
-    };
-
-    // Menambahkan gambar ke FormData jika ada
-    const formData = new FormData();
-    formData.append('namaSayur', updatedProduct.namaSayur);
-    formData.append('hargaSayur', updatedProduct.hargaSayur);
-    formData.append('beratSayur', updatedProduct.beratSayur);
-    if (image) {
-      formData.append('image', image); // Menambahkan gambar
-    }
-
-    try {
-      const response = await axios.put(`http://localhost:9090/api/data/editById/${id}?idAdmin=${idAdmin}`, formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data', // Pastikan tipe konten multipart
-        }
-      });
-
-      Swal.fire({
-        icon: 'success',
-        title: 'Produk berhasil diperbarui!',
-        timer: 2000,
-        showConfirmButton: false
-      });
-
-      setTimeout(() => navigate('/product'), 2000);
-    } catch (error) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Gagal memperbarui produk',
-        text: 'Silakan coba lagi nanti.',
-        showConfirmButton: true
-      });
-    }
+  // Menyusun data yang akan dikirim
+  const updatedProduct = {
+    id: product.id,  // Menambahkan ID produk yang akan diedit
+    namaSayur: name.trim(),
+    hargaSayur: parseFloat(price),
+    beratSayur: weight.trim(),
+    idAdmin: idAdmin,  // Menambahkan ID admin
   };
+
+  // Debug log untuk melihat bentuk data JSON
+  console.log("Data produk yang dikirim:", updatedProduct);
+  
+  // Menambahkan gambar ke FormData jika ada
+  const formData = new FormData();
+  formData.append('product', JSON.stringify(updatedProduct));  // Mengirimkan JSON sebagai string
+  if (image) {
+    formData.append('file', image); // Menambahkan gambar dengan nama parameter 'file'
+  }
+
+  // Debug: log the FormData content
+  for (let pair of formData.entries()) {
+    console.log(pair[0] + ': ' + pair[1]);
+  }
+
+  try {
+    const response = await axios.put(
+      `http://localhost:9090/api/product/data/edit/${id}`,
+      formData, // Data dalam format FormData
+      {
+        headers: {
+          'Content-Type': 'multipart/form-data', // Pastikan tipe ini
+        },
+      }
+    );
+    Swal.fire({
+      icon: 'success',
+      title: 'Produk berhasil diperbarui!',
+      timer: 2000,
+      showConfirmButton: false,
+    });
+    setTimeout(() => navigate('/product'), 2000);
+  } catch (error) {
+    console.error('Error response data:', error.response.data);  // Debug response error
+    Swal.fire({
+      icon: 'error',
+      title: 'Gagal memperbarui produk',
+      text: 'Silakan coba lagi nanti.',
+    });
+  }
+};
+  
+  
 
   // Jika data produk sedang dimuat
   if (loading) {

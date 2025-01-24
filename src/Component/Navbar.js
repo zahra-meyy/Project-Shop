@@ -15,19 +15,11 @@ function Navbar({ isLoggedIn, onLoginToggle }) {
                 <div className="brand">Sayur Segar</div>
                 <div className="collapse navbar-collapse">
                     <div className="navbar-nav ms-auto">
-                        {/* Navbar sebelum login */}
-                        {!isLoggedIn && (
+                        {/* Navbar sebelum login atau di halaman login */}
+                        {!isLoggedIn && window.location.pathname !== "/login" && (
                             <>
                                 <Link to="/" className="nav-link">Home</Link>
                                 <Link to="/login" className="nav-link">Login</Link>
-                            </>
-                        )}
-
-                        {/* Navbar saat di halaman login */}
-                        {isLoggedIn === null && (
-                            <>
-                                <Link to="/" className="nav-link">H </Link>
-                                <Link to="/" onClick={handleLoginClick} className="nav-link">Logout</Link>
                             </>
                         )}
 
